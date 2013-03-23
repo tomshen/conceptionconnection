@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Conception Connection</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta name='description' content='Find out what was happening when you were conceived!'>
+        <meta name='author' content='Tom Shen'>
+    </head>
+    <body>
+        <header>
+            <h1>Conception Connection</h1>
+        </header>
+        <section>
+            <div>
+                Birthdate: <input type='date' name='birthdate' id='birthdate'><br>
+                Time range (in days): <input type='text' name='delta' id='delta' value='5'><br>
+                <button id='submit-button' onclick='getEvents()'>Submit</button>
+            </div>
+            <div id='events'>
+            </div>
+        </section>
+        <section>
+            <img src='http://www.smbc-comics.com/comics/20130321.gif'>
+        </section>
+        <script>
+            function getEvents() {
+                var url = '/conception'
+                var req = new XMLHttpRequest()
+                var birthdate = document.getElementById('birthdate').value
+                var delta = document.getElementById('delta').value
+                var params = ''
+                if(delta) {
+                    var params = {
+                        'birthdate': birthdate,
+                        'delta': delta,
+                        'type': 'html' // leave out for JSON
+                    }
+                }
+                else {
+                    var params = {
+                        'birthdate': birthdate,
+                        'type': 'html'
+                    }
+                }
+                function toQueryString(obj) {
+                    var parts = [];
+                    for (var i in obj) {
+                        if (obj.hasOwnProperty(i)) {
+                            parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+                        }
+                    }
+                    return parts.join("&");
+                }
+                url += '?' + toQueryString(params)
+                console.log(url)
+                req.open('GET', url, false)
+                req.send(null)
+                document.getElementById('events').innerHTML = req.responseText
+            }
+        </script>
+    </body>
+</html>
