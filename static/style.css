@@ -136,3 +136,10 @@ footer {
   font-size: 200%;
   font-family: "lato", arial, sans-serif;
 }
+
+::selection {
+  background: #aa0000; /* Safari */
+  }
+::-moz-selection {
+  background: #aa0000; /* Firefox */
+}
