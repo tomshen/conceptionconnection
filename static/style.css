@@ -1,3 +1,134 @@
-* {
-    background: white;
+body {
+  font-size: 62.5%;
+  font-family: "Cutive", georgia, serif;
+  background-color: red;
+  padding: 3.6rem;
+  border-bottom: 1rem dotted white;
+}
+
+header {
+  position: relative;
+}
+
+h1 {
+  font-size: 7.2rem;
+  font-family: "alfa slab one", impact, serif;
+}
+
+h3 {
+  font-size: 3.2rem;
+  color: white;
+  margin: 0.5em 0 2em 0;
+}
+
+.name-plate {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+  margin-right: 0.5rem;
+  line-height: 2;
+  border-radius: 0.3rem;
+  text-align: right;
+  font-family: "lato", arial, sans-serif;
+}
+
+h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.1rem;
+  border-bottom: none!important;
+}
+
+h6 {
+  color: grey;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+a {
+  color:inherit;
+  text-decoration: none;
+  border-bottom: 0.2rem dotted white;
+  margin-bottom: -0.5px;
+}
+a:visited {
+  color:inherit;
+}
+
+section {
+  text-align: right;
+}
+
+.input-box {
+
+  font-size: 2rem;
+}
+
+.label {
+}
+
+.button {
+  color: white;
+  font-size: 3.2rem;
+  margin: 0.5em 0.3em 1em 0;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 0.2rem dotted white;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+input {
+  outline: none;
+  background: inherit;
+  border: none;
+  margin: 0 0.5em;
+  border-bottom: 0.2rem solid black;
+  font-family: "Cutive", georgia, serif;
+  font-size: 2rem;
+  text-align: center;
+  color: white!important;
+}
+
+input:empty {
+  color: white;
+}
+
+.events {
+  text-align: left;
+  font-size: 1.5rem;
+  width: 50rem;
+  color: white;
+  line-height: 1.6;
+}
+
+.events h2 {
+  font-size: 2rem;
+  color:black;
+}
+
+.events li{
+  margin-left: 4em;
+  text-indent: -2em;
+  margin-bottom: 2em;
+  font-family: "lato", arial, sans-serif;
+}
+
+.events a {
+  border-bottom: none;
+  text-decoration: none;
+  font-weight: 700;
+}
+.events a {
+  border-bottom: none;
+  text-decoration: none;
+  font-style: italic;
 }

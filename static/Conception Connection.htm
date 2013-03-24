@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://conceptionconnection.herokuapp.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Conception Connection</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Find out what was happening when you were conceived!">
+        <meta name="author" content="Tom Shen">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Cutive|Lato:300italic,400,700italic,700' rel='stylesheet' type='text/css'>
+    <link href='reset.css' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+
+</head>
+    <body>
+        <a href="https://github.com/tomshen/conceptionconnection"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+        <header>
+            <h1>Conception<br>Connection</h1>
+            <h3>Inspired by an <a href="http://www.smbc-comics.com/index.php?db=comics&id=2922#comic">SMBC comic</a>.</h3>
+            <div class="name-plate">
+                <a href="http:/www.tpoulos.me"><h5>Taylor Poulos</h5></a>
+                <h6>Thinks He's a Designer</h6>
+                <a href="http:/www.tomshen.me"><h5>Tom Shen</h5></a>
+                <h6>Thinks He's a Developer</h6>
+            </div>
+        </header>
+        <section>
+            <div class="input-box">
+                <span class="label">Birthdate:</span> 
+                    <input maxlength="2" type="text" size="3" name="month" id="month" placeholder="mm" value="" onclick="this.val('')"> / 
+                    <input maxlength="2" type="text" size="3" name="day" id="day" placeholder="dd" value="">/ 
+                    <input maxlength="4" type="text" size="5" name="year" id="year" placeholder="yyyy" value="">
+
+                <div>
+                    <span class="label">Day Range:</span> 
+                    <input type="text" size="2" name="delta" id="delta" value="5">
+                </div>
+
+                <div class="button" id="submit-button" onclick="getEvents()">Submit</div>
+            </div>
+
+
+            <div class="events" id="events"><h2>October 10</h2>
+<ul>
+<li>U.S. President <a href="http://en.wikipedia.org/wiki/Dwight_D._Eisenhower" title="Dwight D. Eisenhower">Dwight D. Eisenhower</a> apologizes to the finance minister of <a href="http://en.wikipedia.org/wiki/Ghana" title="Ghana">Ghana</a>, <a href="http://en.wikipedia.org/wiki/Komla_Agbeli_Gbdehmah" title="Komla Agbeli Gbdemah" class="mw-redirect">Komla Agbeli Gbdemah</a>, after he is refused service in a <a href="http://en.wikipedia.org/wiki/Dover,_Delaware" title="Dover, Delaware">Dover, Delaware</a> restaurant.</li>
+<li>A <a href="http://en.wikipedia.org/wiki/Windscale_fire" title="Windscale fire">fire at the Windscale power station</a> in the UK releases radioactive material into the surrounding environment, including <a href="http://en.wikipedia.org/wiki/Iodine-131" title="Iodine-131">Iodine-131</a>.</li>
+</ul>
+<h2>October 11</h2>
+<ul>
+<li>The <a href="http://en.wikipedia.org/wiki/Jodrell_Bank" title="Jodrell Bank" class="mw-redirect">Jodrell Bank</a> <a href="http://en.wikipedia.org/wiki/Radio_telescope" title="Radio telescope">Radio telescope</a> opens in <a href="http://en.wikipedia.org/wiki/Cheshire" title="Cheshire">Cheshire</a>, UK.</li>
+<li>The <a href="http://en.wikipedia.org/wiki/Orbit" title="Orbit">orbit</a> of the last stage of the <a href="http://en.wikipedia.org/wiki/R-7_Semyorka" title="R-7 Semyorka">R-7 Semyorka</a> rocket (carrying <a href="http://en.wikipedia.org/wiki/Sputnik_I" title="Sputnik I" class="mw-redirect">Sputnik I</a>) is first successfully calculated on an <a href="http://en.wikipedia.org/wiki/IBM_704" title="IBM 704">IBM 704</a> computer by teams at <a href="http://en.wikipedia.org/wiki/The_M.I.T._Computation_Center_and_Operation_Moonwatch" title="The M.I.T. Computation Center and Operation Moonwatch">The M.I.T. Computation Center and Operation Moonwatch</a>, <a href="http://en.wikipedia.org/wiki/Cambridge,_Massachusetts" title="Cambridge, Massachusetts">Cambridge, Massachusetts</a>.</li>
+</ul>
+<h2>October 12</h2>
+<ul><li><a href="http://en.wikipedia.org/wiki/Ayn_Rand" title="Ayn Rand">Ayn Rand</a>'s novel <i><a href="http://en.wikipedia.org/wiki/Atlas_Shrugged" title="Atlas Shrugged">Atlas Shrugged</a></i> is published.</li></ul>
+</div>
+        </section>
+
+        <script>
+            function getEvents() {
+                var url = '/conception'
+                var req = new XMLHttpRequest()
+                var birthdate = "" + 
+                                document.getElementById('year').value + "-" + 
+                                document.getElementById('month').value + "-" + 
+                                document.getElementById('day').value;
+                console.log(birthdate)
+                var delta = document.getElementById('delta').value
+                var params = ''
+                if(delta) {
+                    var params = {
+                        'birthdate': birthdate,
+                        'delta': delta,
+                        'type': 'html' // leave out for JSON
+                    }
+                }
+                else {
+                    var params = {
+                        'birthdate': birthdate,
+                        'type': 'html'
+                    }
+                }
+                function toQueryString(obj) {
+                    var parts = [];
+                    for (var i in obj) {
+                        if (obj.hasOwnProperty(i)) {
+                            parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+                        }
+                    }
+                    return parts.join("&");
+                }
+                url += '?' + toQueryString(params)
+                console.log(url)
+                req.open('GET', url, false)
+                req.send(null)
+                document.getElementById('events').innerHTML = req.responseText
+            }
+        </script>
+    
+</body></html>
