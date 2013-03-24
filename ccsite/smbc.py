@@ -1,4 +1,4 @@
-import conceptionconnection.wiki as wiki
+import ccsite.wiki as wiki
 import datetime
 import json
 

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from re import match
 from datetime import date
 
-from conceptionconnection.smbc import ConceptionConnection
+from ccsite.smbc import ConceptionConnection
 
 def home(request):
     return render(request, 'index.html')
