@@ -1,7 +1,10 @@
 function getEvents() {
     var url = '/conception'
     var req = new XMLHttpRequest()
-    var birthdate = document.getElementById('birthdate').value
+    var birthdate = "" + 
+                    document.getElementById('year').value + "-" + 
+                    document.getElementById('month').value + "-" + 
+                    document.getElementById('day').value;
     var delta = document.getElementById('delta').value
     var params = ''
     if(delta) {
@@ -11,7 +14,7 @@ function getEvents() {
             'type': 'html' // leave out for JSON
         }
     }
-    else { // delta has a default value of 5
+    else {
         var params = {
             'birthdate': birthdate,
             'type': 'html'
@@ -27,7 +30,6 @@ function getEvents() {
         return parts.join("&");
     }
     url += '?' + toQueryString(params)
-    console.log(url)
     req.open('GET', url, false)
     req.send(null)
     document.getElementById('events').innerHTML = req.responseText
