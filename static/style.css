@@ -68,11 +68,7 @@ section {
 }
 
 .input-box {
-
   font-size: 2rem;
-}
-
-.label {
 }
 
 .button {
@@ -128,9 +124,12 @@ input:empty {
   border-bottom: none;
   text-decoration: none;
   font-weight: 700;
-}
-.events a {
-  border-bottom: none;
-  text-decoration: none;
   font-style: italic;
+}
+
+footer {
+  color: white;
+  text-align: center;
+  font-size: 200%;
+  font-family: "lato", arial, sans-serif;
 }
