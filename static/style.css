@@ -1,4 +1,6 @@
 body {
+  margin: auto;
+  max-width: 1000px;
   font-size: 62.5%;
   font-family: "Cutive", georgia, serif;
   background-color: red;
